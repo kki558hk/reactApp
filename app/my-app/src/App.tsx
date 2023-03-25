@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { MainLayout } from './components/compIndex';
 
 function App() {
   return (
     <div className="App">
-      Hello React
+      <MainLayout></MainLayout>
     </div>
   );
 }
