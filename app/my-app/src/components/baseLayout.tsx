@@ -1,7 +1,6 @@
-import { Header, Footer } from "./subcomponents/index";
-import { Album } from "./materialUiTemplates/tempIndex";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { ContentLayout } from './contentsComponent/contentIndex';
 
 const MainLayout = () => {
 
@@ -32,8 +31,7 @@ const MainLayout = () => {
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Header></Header>
-                <Footer></Footer>
+                <ContentLayout />
             </ThemeProvider>
         </>
     )

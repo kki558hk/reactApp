@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { MainLayout } from './components/compIndex';
+import { BaseLayout } from './components/compIndex';
 
 function App() {
   return (
     <div className="App">
-      <MainLayout></MainLayout>
-    </div>
+      <BaseLayout />
+    </div >
   );
 }
 
