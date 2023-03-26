@@ -5,17 +5,19 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 const imageUrl = 'https://live.staticflickr.com/6053/6211729877_758eb16097_b.jpg';
 
 const ContentCard = () => {
+    const [name, setName] = useState('');
+
     return (
         <>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345 }} onClick={(event) => { setName('cccc') }}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        // height="140"
                         image={imageUrl}
                         alt="famous quotes"
                     />

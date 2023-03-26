@@ -45,7 +45,7 @@ const SearchArea = () => {
                         </InputAdornment>
                     )
                 }}
-                sx={{ marginTop: 10 }}
+                sx={{ mt: 10 }}
                 fullWidth
                 value={text}
                 onChange={(event) => setText(event.target.value)}
