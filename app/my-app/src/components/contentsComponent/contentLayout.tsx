@@ -4,13 +4,10 @@ import { BrowserRouter, useLocation } from "react-router-dom";
 import Routes from '../router/router';
 
 const ContentLayout = () => {
-    const location = useLocation();
     return (
         <>
             <BrowserRouter>
-                <Header
-                    curLoc={location.pathname}
-                />
+                <Header />
                 <Container maxWidth='xl' sx={{ mt: '5%' }}>
                     <Routes />
                 </Container>
