@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ContentLayout } from './contentsComponent/contentIndex';
 
+
 const MainLayout = () => {
 
     const theme = createTheme({
@@ -28,12 +29,10 @@ const MainLayout = () => {
     });
 
     return (
-        <>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <ContentLayout />
-            </ThemeProvider>
-        </>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <ContentLayout />
+        </ThemeProvider>
     )
 }
 

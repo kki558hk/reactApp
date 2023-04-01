@@ -5,8 +5,15 @@ import Typography from '@mui/material/Typography';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-const Header = () => {
+
+
+import { RouteComponentProps } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Path } from '../router/router';
+
+const Header = (props: any) => {
     return (
+
         <>
             <AppBar position="fixed" sx={{ bgcolor: 'primary.dark' }}>
                 <Toolbar sx={{ display: 'flex' }}>
@@ -14,7 +21,9 @@ const Header = () => {
                         sx={{ fontFamily: 'Dancing Script', fontWeight: 'bold' }} >
                         Quote.com
                     </Typography>
-                    <Button color='inherit' sx={{ ml: 'auto' }}>About</Button>
+
+                    <Button color='inherit' sx={{ ml: 'auto' }}
+                        component={Link} to={Path.about}>About</Button>
                 </Toolbar>
 
             </AppBar>

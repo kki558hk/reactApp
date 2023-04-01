@@ -9,7 +9,7 @@ import { height } from '@mui/system';
 import { AboutContentEn, AboutContentJp } from '../subcomponents/index';
 
 const movieId = '8OcegOGAGIs';
-const AboutLayout = () => {
+const AboutContent = () => {
     return (
         <>
             <Container disableGutters sx={{ minHeight: '100vh', marginTop: '4%', marginBottom: '4%' }}>
@@ -33,4 +33,4 @@ const AboutLayout = () => {
     )
 }
 
-export default AboutLayout;
+export default AboutContent;

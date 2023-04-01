@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 
-const imageUrl = 'https://live.staticflickr.com/6053/6211729877_758eb16097_b.jpg';
+const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoPZdmBTmKxWdTJ4zE_7_kqq9ZcI7kedXhzw&usqp=CAU';
 
 const ContentCard = () => {
     const [name, setName] = useState('');

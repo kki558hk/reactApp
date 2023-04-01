@@ -1,19 +1,21 @@
 import { Header, Footer } from '../subcomponents/index';
-import InitialContents from './initialContent';
-import AboutContent from './aboutContent';
-import DetailedPeopleContent from './detailedPeopleContent';
 import Container from '@mui/material/Container';
+import { BrowserRouter, useLocation } from "react-router-dom";
+import Routes from '../router/router';
 
 const ContentLayout = () => {
+    const location = useLocation();
     return (
         <>
-            <Header />
-            <Container maxWidth='xl' sx={{ mt: '5%' }}>
-                {/* <DetailedPeopleContent /> */}
-                {/* <AboutContent /> */}
-                <InitialContents />
-            </Container>
-            <Footer />
+            <BrowserRouter>
+                <Header
+                    curLoc={location.pathname}
+                />
+                <Container maxWidth='xl' sx={{ mt: '5%' }}>
+                    <Routes />
+                </Container>
+                <Footer />
+            </BrowserRouter>
         </>
     )
 }
