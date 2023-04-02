@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoPZdmBTmKxWdTJ4zE_7_kqq9ZcI7kedXhzw&usqp=CAU';
 
-const ContentCard = () => {
+const ContentCard = (props: any) => {
     const [name, setName] = useState('');
 
     return (
@@ -23,10 +23,10 @@ const ContentCard = () => {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            cdcccc
+                            {props.name}
                         </Typography>
                         <Typography variant="subtitle1">
-                            dddddd
+                            {props.name}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
