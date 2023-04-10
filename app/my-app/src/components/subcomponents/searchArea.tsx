@@ -27,9 +27,11 @@ const StyledSearchbar = styled('div')(({ theme }) => ({
     //     padding: theme.spacing(0, 5),
     // },
 }));
+type searchTextType = {
+    searchTextChanged: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+}
 
-const SearchArea = () => {
-    const [text, setText] = useState('');
+const SearchArea = (props: searchTextType) => {
 
     return (
 
@@ -47,10 +49,8 @@ const SearchArea = () => {
                 }}
                 sx={{ mt: 10 }}
                 fullWidth
-                value={text}
-                onChange={(event) => setText(event.target.value)}
+                onChange={(event) => props.searchTextChanged(event)}
             />
-            <>{text}</>
         </>
     );
 }
