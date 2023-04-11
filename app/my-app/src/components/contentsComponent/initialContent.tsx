@@ -122,11 +122,10 @@ const InitialContents = () => {
 
     const searchTextChanged = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         event.preventDefault();
-        setSearchText(event.target.value);
         //検索文字列によるフィルタ
         const searchedDatas = peopleDatas
             .filter((people: peopleData) => {
-                if ((event.target.value !== '' && people.name.indexOf(event.target.value) != -1)
+                if ((event.target.value !== '' && people.name.trim().toLowerCase().indexOf(event.target.value.trim().toLowerCase()) != -1)
                     || event.target.value === '') {
                     return people
                 }
@@ -149,9 +148,6 @@ const InitialContents = () => {
                 : searchedDatas.length / contentPerPage);
 
     };
-
-
-    const [searchText, setSearchText] = useState<string>('');
 
     return (
         <>
@@ -180,19 +176,11 @@ const InitialContents = () => {
                         searchedPeopleDatas
                             .slice(firstContentIndex, lastContentIndex)
                             .map((people: any) =>
-                                searchText !== '' && people.name.indexOf(searchText) != -1 ?
-                                    (
-                                        <Grid item key={people.id} xs={12} sm={6} md={4}>
-                                            <ContentCard name={people.name} />
-                                        </Grid>
-                                    )
-                                    :
-                                    searchText === '' ? (
-                                        <Grid item key={people.id} xs={12} sm={6} md={4}>
-                                            <ContentCard name={people.name} />
-                                        </Grid>
-                                    )
-                                        : <></>
+                                <Grid item key={people.id} xs={12} sm={6} md={
+                                    searchedPeopleDatas.length >= 3 ? 4
+                                        : searchedPeopleDatas.length == 2 ? 6 : 12}>
+                                    <ContentCard name={people.name} />
+                                </Grid>
 
                             )
                     }
@@ -202,7 +190,7 @@ const InitialContents = () => {
                 lastContentIndex:{lastContentIndex}
                 curPage:{curPage}
                 contentPerPage:{contentPerPage}
-            </Container>
+            </Container >
         </>
     )
 }
