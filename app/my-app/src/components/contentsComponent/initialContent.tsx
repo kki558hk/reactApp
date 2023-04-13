@@ -149,6 +149,8 @@ const InitialContents = () => {
 
     };
 
+
+
     return (
         <>
             <Container maxWidth="lg">
@@ -165,31 +167,35 @@ const InitialContents = () => {
                 </Typography>
             </Container>
             <Container sx={{ py: 10 }} maxWidth="md">
-                <Pagination sx={{ display: 'flex', justifyContent: 'center', marginTop: '0%', marginBottom: '2%' }}
-                    count={pageCnt}
-                    page={curPage}
-                    onChange={onCurPageChanged}
-                    showFirstButton
-                    showLastButton />
+                {
+                    searchedPeopleDatas.length == 0 ? <></> : (
+                        <Pagination sx={{ display: 'flex', justifyContent: 'center', marginTop: '0%', marginBottom: '4%' }}
+                            count={pageCnt}
+                            page={curPage}
+                            onChange={onCurPageChanged}
+                            showFirstButton
+                            showLastButton />
+                    )
+                }
                 <Grid container spacing={4}>
                     {
-                        searchedPeopleDatas
-                            .slice(firstContentIndex, lastContentIndex)
-                            .map((people: any) =>
-                                <Grid item key={people.id} xs={12} sm={6} md={
-                                    searchedPeopleDatas.length >= 3 ? 4
-                                        : searchedPeopleDatas.length == 2 ? 6 : 12}>
-                                    <ContentCard name={people.name} />
-                                </Grid>
-
-                            )
+                        searchedPeopleDatas.length > 0 ? (
+                            searchedPeopleDatas
+                                .slice(firstContentIndex, lastContentIndex)
+                                .map((people: any) =>
+                                    <Grid item key={people.id} xs={12} sm={6} md={4}>
+                                        <ContentCard name={people.name} />
+                                    </Grid>
+                                )
+                        ) : (
+                            <Grid item xs={12}>
+                                <Typography variant='h5' fontWeight='bold' sx={{ display: 'flex', justifyContent: 'center' }}>
+                                    No Result Found
+                                </Typography>
+                            </Grid>
+                        )
                     }
                 </Grid>
-
-                firstContentIndex:{firstContentIndex}
-                lastContentIndex:{lastContentIndex}
-                curPage:{curPage}
-                contentPerPage:{contentPerPage}
             </Container >
         </>
     )
