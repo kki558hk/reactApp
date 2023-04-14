@@ -16,28 +16,23 @@ const movieId = '8OcegOGAGIs';
 const AboutContent = () => {
     return (
         <>
-            <Container disableGutters sx={{ marginTop: '3%', marginBottom: '3%' }}>
-                <Paper elevation={3} >
-                    <Grid container spacing={1}>
-                        <Grid item xs={12}>
-                            <AboutContentEn />
-                        </Grid>
-                        <Grid item xs={12} display={'flex'} justifyContent={'center'} alignItems={'stretch'}>
-                            <Box sx={{ paddingTop: '1%', minHeight: '300px' }} className='movieBox'>
-                                <iframe className='youtube'
-                                    src={`https://www.youtube.com/embed/${movieId}?autoplay=1`}
-                                    title="YouTube"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    width='100%'
-                                    height='100%'
-                                />
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Paper>
-            </Container>
-
+            <Grid container spacing={1}>
+                <Grid item xs={12}>
+                    <AboutContentEn />
+                </Grid>
+                <Grid item xs={12} display={'flex'} justifyContent={'center'} alignItems={'stretch'}>
+                    <Box sx={{ paddingTop: '1%', minHeight: '300px' }} className='movieBox'>
+                        <iframe className='youtube'
+                            src={`https://www.youtube.com/embed/${movieId}?autoplay=1`}
+                            title="YouTube"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            width='100%'
+                            height='100%'
+                        />
+                    </Box>
+                </Grid>
+            </Grid>
         </>
     )
 }
