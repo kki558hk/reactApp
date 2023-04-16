@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
-import { SearchArea, ContentCard } from '../subcomponents/index';
+import { SearchArea, ContentCard, DetailedInfoModal } from '../subcomponents/index';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
@@ -24,9 +24,7 @@ type peopleData = {
 
 
 const peopleDatasToDisplay: peopleData[] = []
-
-const imageUrl = 'https://c4.wallpaperflare.com/wallpaper/935/849/231/background-tree-book-wallpaper-preview.jpg';
-
+let personInfo: peopleData;
 const InitialContents = () => {
 
     const [peopleDatas, setPeopleDatas] = useState<peopleData[]>(
@@ -149,7 +147,20 @@ const InitialContents = () => {
 
     };
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleModalOpen = (person: peopleData) => {
+        console.log("clicked");
+        console.log(person.name);
+        setModalOpen(true);
+        personInfo = person;
+    }
 
+
+
+
+    const handleModalClose = () => setModalOpen(false);
+
+    const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoPZdmBTmKxWdTJ4zE_7_kqq9ZcI7kedXhzw&usqp=CAU';
 
     return (
         <>
@@ -184,7 +195,12 @@ const InitialContents = () => {
                                 .slice(firstContentIndex, lastContentIndex)
                                 .map((people: any) =>
                                     <Grid item key={people.id} xs={12} sm={6} md={4}>
-                                        <ContentCard name={people.name} />
+                                        <ContentCard
+                                            personData={people}
+                                            imageUrl={imageUrl}
+                                            handleModalOpen={handleModalOpen}
+                                            handleModalClose={handleModalClose}
+                                            modalOpen={modalOpen} />
                                     </Grid>
                                 )
                         ) : (
@@ -197,6 +213,12 @@ const InitialContents = () => {
                     }
                 </Grid>
             </Container >
+            <DetailedInfoModal
+                modalOpen={modalOpen}
+                handleModalClose={handleModalClose}
+                imageUrl={imageUrl}
+                personInfo={personInfo}
+            />
         </>
     )
 }

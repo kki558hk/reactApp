@@ -5,28 +5,47 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import DetailedInfoModal from './detailedInfoModal';
 import { useState } from 'react';
 
 const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoPZdmBTmKxWdTJ4zE_7_kqq9ZcI7kedXhzw&usqp=CAU';
 
-const ContentCard = (props: any) => {
+
+type peopleData = {
+    id: number;
+    name: string;
+    title: string;
+    discript: string;
+}
+
+type ContentCardPropsType = {
+    handleModalOpen: (person: peopleData) => void;
+    imageUrl: string;
+    personData: peopleData;
+    handleModalClose: () => void;
+    modalOpen: boolean;
+}
+
+
+
+const ContentCard = (props: ContentCardPropsType) => {
     const [name, setName] = useState('');
 
     return (
         <>
-            <Card sx={{ maxWidth: 345 }} onClick={(event) => { setName('cccc') }}>
+            <Card sx={{ maxWidth: 345 }} onClick={(event) => { props.handleModalOpen(props.personData) }}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        image={imageUrl}
+                        image={props.imageUrl}
                         alt="famous quotes"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            {props.name}
+                            {props.personData.name}
                         </Typography>
                         <Typography variant="subtitle1">
-                            {props.name}
+                            {props.personData.title}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -36,6 +55,7 @@ const ContentCard = (props: any) => {
                     </Button>
                 </CardActions>
             </Card>
+
         </>
     )
 }

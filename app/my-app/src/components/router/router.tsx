@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import InitialContents from "../contentsComponent/initialContent";
 import AboutContent from "../contentsComponent/aboutContent";
+import DetailedPeopleContent from "../contentsComponent/detailedPeopleContent";
 
 export const Path = {
     home: "/",
@@ -13,6 +14,7 @@ const Routes = (): JSX.Element => {
     return (
         <div>
             <Switch>
+                <Route exact path={Path.info} component={DetailedPeopleContent} />
                 <Route exact path={Path.about} component={AboutContent} />
                 <Route exact path={Path.home} component={InitialContents} />
                 <Route path="*" component={InitialContents} />
