@@ -151,8 +151,9 @@ const InitialContents = () => {
     const handleModalOpen = (person: peopleData) => {
         console.log("clicked");
         console.log(person.name);
-        setModalOpen(true);
         personInfo = person;
+        setModalOpen(true);
+
     }
 
 
@@ -213,12 +214,17 @@ const InitialContents = () => {
                     }
                 </Grid>
             </Container >
-            <DetailedInfoModal
-                modalOpen={modalOpen}
-                handleModalClose={handleModalClose}
-                imageUrl={imageUrl}
-                personInfo={personInfo}
-            />
+            {
+                personInfo != null ? (
+                    <DetailedInfoModal
+                        modalOpen={modalOpen}
+                        handleModalClose={handleModalClose}
+                        imageUrl={imageUrl}
+                        personInfo={personInfo}
+                    />
+                ) : <></>
+            }
+
         </>
     )
 }

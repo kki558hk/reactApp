@@ -1,7 +1,12 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ContentLayout } from './contentsComponent/contentIndex';
+import { Client, Provider, cacheExchange, fetchExchange } from 'urql';
 
+const client = new Client({
+    url: 'http://localhost:3000/graphql',
+    exchanges: [cacheExchange, fetchExchange],
+});
 
 const MainLayout = () => {
 
@@ -18,10 +23,6 @@ const MainLayout = () => {
                 light: '#d4bcc3',
                 dark: '#7b132f',
             },
-            // background: {
-            //     default: '#eadcdc',
-            //     paper: '#f7f1f1',
-            // },
             text: {
                 secondary: 'rgba(255,255,255,255)',
             }
@@ -30,8 +31,10 @@ const MainLayout = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <ContentLayout />
+            <Provider value={client}>
+                <CssBaseline />
+                <ContentLayout />
+            </Provider>
         </ThemeProvider>
     )
 }

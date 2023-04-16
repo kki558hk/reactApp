@@ -20,9 +20,9 @@ type peopleData = {
 
 type ContentCardPropsType = {
     handleModalOpen: (person: peopleData) => void;
+    handleModalClose: () => void;
     imageUrl: string;
     personData: peopleData;
-    handleModalClose: () => void;
     modalOpen: boolean;
 }
 

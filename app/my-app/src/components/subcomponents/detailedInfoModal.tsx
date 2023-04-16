@@ -46,17 +46,27 @@ const DetailedInfoModal = (props: DetailedInfoModalPropsType) => {
                 }}>
 
                     <Grid container>
-                        <Grid item xs={12} sm={6} md={8}>
+                        <Grid item xs={12} sm={6} md={12} sx={{ display: 'flex', justifyContent: 'space-around' }}>
                             <CardMedia
                                 component="img"
                                 image={props.imageUrl}
                                 alt="famous quotes"
+                                sx={{ width: '50%', height: '50%' }}
                             />
+                            <div>
+                                <Typography align='center' variant='h6'>
+                                    {props.personInfo.name}
+                                </Typography>
+                                <Typography align='center'>
+                                    {props.personInfo.name}
+                                </Typography>
+                            </div>
+
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <Typography align='center'>
-                                {props.personInfo.name}
-                            </Typography>
+                        <Grid item xs={12} sm={6} md={12}>
+                            {/* <Container sx={{ display: 'flex' }}>
+                                <CircularProgress />
+                            </Container> */}
                         </Grid>
                     </Grid>
                 </Container>
