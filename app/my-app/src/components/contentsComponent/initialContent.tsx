@@ -12,6 +12,9 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { useState } from 'react';
 import { circularProgressClasses } from '@mui/material';
 import { Console } from 'console';
+import { gql, useQuery } from 'urql';
+
+
 
 
 type peopleData = {
@@ -26,6 +29,25 @@ type peopleData = {
 const peopleDatasToDisplay: peopleData[] = []
 let personInfo: peopleData;
 const InitialContents = () => {
+
+    const PeoplesQuery = gql`
+    query {
+        People {
+            Name
+            Title
+            Institution
+        }
+    }
+    `;
+    const [result, reexecuteQuery] = useQuery({
+        query: PeoplesQuery
+    });
+
+    const { data, fetching, error } = result;
+
+    console.log(data);
+    console.log(fetching);
+    console.log(error);
 
     const [peopleDatas, setPeopleDatas] = useState<peopleData[]>(
         [
@@ -178,7 +200,7 @@ const InitialContents = () => {
                     Find your favorite quotes.
                 </Typography>
             </Container>
-            <Container sx={{ py: 10 }} maxWidth="md">
+            <Container sx={{ p: 10 }} maxWidth="md">
                 {
                     searchedPeopleDatas.length == 0 ? <></> : (
                         <Pagination sx={{ display: 'flex', justifyContent: 'center', marginTop: '0%', marginBottom: '4%' }}

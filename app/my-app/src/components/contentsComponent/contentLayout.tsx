@@ -11,11 +11,10 @@ const ContentLayout = () => {
                 <Header />
                 <Container maxWidth='xl' sx={{ mt: '5%' }}>
                     <Container disableGutters sx={{ marginTop: '3%', marginBottom: '3%' }}>
-                        <Paper elevation={3} >
+                        <Paper elevation={3}>
                             <Routes />
                         </Paper>
                     </Container>
-
                 </Container>
                 <Footer />
             </BrowserRouter>
