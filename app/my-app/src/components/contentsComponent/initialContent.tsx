@@ -32,10 +32,11 @@ const InitialContents = () => {
 
     const PeoplesQuery = gql`
     query {
-        People {
+        AllPeople{
             Name
-            Title
+            Age
             Institution
+            Title
         }
     }
     `;
@@ -127,7 +128,6 @@ const InitialContents = () => {
 
 
     const onCurPageChanged = (event: React.ChangeEvent<unknown>, value: number) => {
-        console.debug('OnCurPageChanged');
         event.preventDefault();
         setCurPage(value);
         let nextPgLastIndex = value * contentPerPage;
@@ -177,9 +177,6 @@ const InitialContents = () => {
         setModalOpen(true);
 
     }
-
-
-
 
     const handleModalClose = () => setModalOpen(false);
 
