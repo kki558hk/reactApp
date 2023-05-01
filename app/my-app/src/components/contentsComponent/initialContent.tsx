@@ -12,7 +12,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { useState } from 'react';
 import { circularProgressClasses } from '@mui/material';
 import { Console } from 'console';
-import { gql, useQuery } from 'urql';
+
 
 
 
@@ -30,25 +30,6 @@ const peopleDatasToDisplay: peopleData[] = []
 let personInfo: peopleData;
 const InitialContents = () => {
 
-    const PeoplesQuery = gql`
-    query {
-        AllPeople{
-            Name
-            Age
-            Institution
-            Title
-        }
-    }
-    `;
-    const [result, reexecuteQuery] = useQuery({
-        query: PeoplesQuery
-    });
-
-    const { data, fetching, error } = result;
-
-    console.log(data);
-    console.log(fetching);
-    console.log(error);
 
     const [peopleDatas, setPeopleDatas] = useState<peopleData[]>(
         [
@@ -171,11 +152,8 @@ const InitialContents = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const handleModalOpen = (person: peopleData) => {
-        console.log("clicked");
-        console.log(person.name);
         personInfo = person;
         setModalOpen(true);
-
     }
 
     const handleModalClose = () => setModalOpen(false);

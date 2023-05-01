@@ -5,6 +5,7 @@ import Routes from '../router/router';
 import Paper from '@mui/material/Paper';
 
 const ContentLayout = () => {
+
     return (
         <>
             <BrowserRouter>
