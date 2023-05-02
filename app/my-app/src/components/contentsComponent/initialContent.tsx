@@ -12,9 +12,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { useState } from 'react';
 import { circularProgressClasses } from '@mui/material';
 import { Console } from 'console';
-
-
-
+import { gql, useQuery } from 'urql';
 
 
 type peopleData = {
@@ -30,6 +28,20 @@ const peopleDatasToDisplay: peopleData[] = []
 let personInfo: peopleData;
 const InitialContents = () => {
 
+    const PeopleQuery = gql`
+        query {
+            AllPeople {
+            name
+            title
+            }
+        }
+        `;
+    const [result, reexecuteQuery] = useQuery({
+        query: PeopleQuery,
+    });
+    const { data, fetching, error } = result;
+    console.log(fetching);
+    console.log(error);
 
     const [peopleDatas, setPeopleDatas] = useState<peopleData[]>(
         [
@@ -162,7 +174,14 @@ const InitialContents = () => {
 
     return (
         <>
+
             <Container maxWidth="lg">
+                {
+                    fetching == true ? <>loading</> :
+                        (data.AllPeople.map((ppl: peopleData) => (
+                            <li key={ppl.name}>{ppl.title}</li>
+                        )))
+                }
                 <SearchArea
                     searchTextChanged={searchTextChanged}
                 />
