@@ -4,7 +4,7 @@ import { ContentLayout } from './contentsComponent/contentIndex';
 import { Client, Provider, cacheExchange, fetchExchange } from 'urql';
 
 const client = new Client({
-    url: 'https://quoteapiback-1-n2506521.deta.app/graphql',
+    url: 'gqlserverurl',
     exchanges: [cacheExchange, fetchExchange],
 });
 
