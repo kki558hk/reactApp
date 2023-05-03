@@ -11,8 +11,6 @@ import Grid from '@mui/material/Grid';
 
 const movieId = '8OcegOGAGIs';
 
-
-
 const AboutContent = () => {
     return (
         <>

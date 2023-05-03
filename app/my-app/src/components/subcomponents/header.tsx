@@ -9,6 +9,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { Path } from '../router/router';
 
+
 const Header = (props: any) => {
     const location = useLocation();
     return (
@@ -25,7 +26,6 @@ const Header = (props: any) => {
                     }
                 </Toolbar>
             </AppBar>
-
         </>
 
     )
