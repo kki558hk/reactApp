@@ -1,8 +1,5 @@
 import React from 'react';
-import { AppBar } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import Copyright from '@mui/icons-material/Copyright';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';

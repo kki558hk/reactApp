@@ -1,6 +1,6 @@
 import { Header, Footer } from '../subcomponents/index';
 import Container from '@mui/material/Container';
-import { BrowserRouter, useLocation } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Routes from '../router/router';
 import Paper from '@mui/material/Paper';
 

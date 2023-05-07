@@ -5,26 +5,11 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
 
 
-type peopleData = {
-    Id: number;
-    Name: string;
-    Title: string;
-}
 
-type ContentCardPropsType = {
-    handleModalOpen: (person: peopleData) => void;
-    handleModalClose: () => void;
-    imageUrl: string;
-    personData: peopleData;
-    modalOpen: boolean;
-}
 
 const ContentCard = (props: ContentCardPropsType) => {
-    const [name, setName] = useState('');
-
     return (
         <>
             <Card sx={{ maxWidth: 345 }} onClick={(event) => { props.handleModalOpen(props.personData) }}>

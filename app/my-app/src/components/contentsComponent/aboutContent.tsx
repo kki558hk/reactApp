@@ -1,11 +1,4 @@
-import Paper from '@mui/material/Paper';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import Youtube from 'react-youtube';
-import { GifBox } from '@mui/icons-material';
 import Box from '@mui/material/Box';
-import { height } from '@mui/system';
 import { AboutContentEn, AboutContentJp } from '../subcomponents/index';
 import Grid from '@mui/material/Grid';
 

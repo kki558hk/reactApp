@@ -1,17 +1,10 @@
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
+
 import { SearchArea, ContentCard, DetailedInfoModal } from '../subcomponents/index';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
 import { useState, useEffect } from 'react';
-import { circularProgressClasses } from '@mui/material';
-import { Console } from 'console';
 import { gql, useQuery } from 'urql';
 import LinearProgress from '@mui/material/LinearProgress';
 import Alert from '@mui/material/Alert';
@@ -67,7 +60,7 @@ const InitialContents = () => {
         setLastContentIndex(nextPgLastIndex >= colLastIndex
             ? colLastIndex
             : nextPgLastIndex);
-        setFirstContentIndex(value == 1
+        setFirstContentIndex(value === 1
             ? 0
             : (value - 1) * contentPerPage);
     };
@@ -77,7 +70,7 @@ const InitialContents = () => {
         //検索文字列によるフィルタ
         const searchedDatas = peopleDatas
             .filter((people: peopleData) => {
-                if ((event.target.value !== '' && people.Name.trim().toLowerCase().indexOf(event.target.value.trim().toLowerCase()) != -1)
+                if ((event.target.value !== '' && people.Name.trim().toLowerCase().indexOf(event.target.value.trim().toLowerCase()) !== -1)
                     || event.target.value === '') {
                     return people
                 }
@@ -130,7 +123,7 @@ const InitialContents = () => {
             </Container>
             <Container sx={{ p: 10 }} maxWidth="md">
                 {
-                    searchedPeopleDatas.length == 0 ? <></> : (
+                    searchedPeopleDatas.length === 0 ? <></> : (
                         <Pagination sx={{ display: 'flex', justifyContent: 'center', marginTop: '0%', marginBottom: '4%' }}
                             count={pageCnt}
                             page={curPage}
