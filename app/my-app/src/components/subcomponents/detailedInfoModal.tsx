@@ -1,13 +1,7 @@
 import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
-import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 
 type peopleData = {

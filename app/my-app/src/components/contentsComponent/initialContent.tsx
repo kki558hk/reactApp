@@ -18,11 +18,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
 
-type peopleData = {
-    Id: number;
-    Name: string;
-    Title: string;
-}
+
 
 let personInfo: peopleData;
 const InitialContents = () => {
@@ -106,6 +102,7 @@ const InitialContents = () => {
     };
 
     const [modalOpen, setModalOpen] = useState(false);
+    //Modalが開いた時のイベント
     const handleModalOpen = (person: peopleData) => {
         personInfo = person;
         setModalOpen(true);

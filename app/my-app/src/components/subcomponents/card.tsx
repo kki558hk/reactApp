@@ -5,17 +5,13 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import DetailedInfoModal from './detailedInfoModal';
 import { useState } from 'react';
-
-const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoPZdmBTmKxWdTJ4zE_7_kqq9ZcI7kedXhzw&usqp=CAU';
 
 
 type peopleData = {
     Id: number;
     Name: string;
     Title: string;
-
 }
 
 type ContentCardPropsType = {
@@ -25,8 +21,6 @@ type ContentCardPropsType = {
     personData: peopleData;
     modalOpen: boolean;
 }
-
-
 
 const ContentCard = (props: ContentCardPropsType) => {
     const [name, setName] = useState('');
