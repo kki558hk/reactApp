@@ -11,10 +11,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 
 type peopleData = {
-    id: number;
-    name: string;
-    title: string;
-    discript: string;
+    Id: number;
+    Name: string;
+    Title: string;
+
 }
 
 type DetailedInfoModalPropsType = {
@@ -59,10 +59,10 @@ const DetailedInfoModal = (props: DetailedInfoModalPropsType) => {
                             />
                             <Container sx={{ justifyContent: 'center' }}>
                                 <Typography align='center' variant='h6'>
-                                    {props.personInfo.name}
+                                    {props.personInfo.Name}
                                 </Typography>
                                 <Typography align='center'>
-                                    {props.personInfo.name}
+                                    {props.personInfo.Name}
                                 </Typography>
                             </Container>
                         </Grid>

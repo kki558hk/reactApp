@@ -9,107 +9,50 @@ import { SearchArea, ContentCard, DetailedInfoModal } from '../subcomponents/ind
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { circularProgressClasses } from '@mui/material';
 import { Console } from 'console';
 import { gql, useQuery } from 'urql';
+import LinearProgress from '@mui/material/LinearProgress';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 
 type peopleData = {
-    id: number;
-    name: string;
-    title: string;
-    discript: string;
+    Id: number;
+    Name: string;
+    Title: string;
 }
 
-
-
-const peopleDatasToDisplay: peopleData[] = []
 let personInfo: peopleData;
 const InitialContents = () => {
 
     const PeopleQuery = gql`
-        query {
-            AllPeople {
-            name
-            title
-            }
+      {
+        AllPeople{
+          Name
+          Age
+          Title
         }
+      }
         `;
     const [result, reexecuteQuery] = useQuery({
         query: PeopleQuery,
     });
+
     const { data, fetching, error } = result;
-    console.log(fetching);
-    console.log(error);
 
-    const [peopleDatas, setPeopleDatas] = useState<peopleData[]>(
-        [
-            {
-                id: 1,
-                name: "Warren Buffett",
-                title: "CEO of Berksher Hathaway",
-                discript: "Investor"
-            },
+    const [peopleDatas, setPeopleDatas] = useState<peopleData[]>([]);
+    const [searchedPeopleDatas, setSearchedPeopleDatas] = useState<peopleData[]>([]);
+    useEffect(() => {
+        if (fetching === false && data !== undefined) {
+            let pplDatas = data.AllPeople as peopleData[]
+            setSearchedPeopleDatas(pplDatas);
+            setPeopleDatas(pplDatas);
+        }
 
-            {
-                id: 2, name: "Jeff Bezos",
-                title: "Founder of Amazon",
-                discript: "Investor,Entreprenor"
-            }
-            , {
-                id: 3, name: "Peter lynch",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-            , {
-                id: 4, name: "Peter lynch",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-            , {
-                id: 5, name: "Chalie Munger",
-                title: "Vice president of Berksher Hathaway",
-                discript: "Investor"
-            }
-            , {
-                id: 6, name: "Masayoshi Son",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-            , {
-                id: 7, name: "Masayoshi Son",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }, {
-                id: 8, name: "Masayoshi Son",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-            , {
-                id: 9, name: "Masayoshi Son",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-            , {
-                id: 10, name: "Masayoshi Son",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-            , {
-                id: 11, name: "Masayoshi Son",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-            , {
-                id: 12, name: "Masayoshi Son",
-                title: "Mageran Fund",
-                discript: "Investor"
-            }
-        ]
+    }, [data])
 
-    );
-    const [searchedPeopleDatas, setSearchedPeopleDatas] = useState<peopleData[]>(peopleDatas);
     const [contentPerPage, setContentPerPage] = useState(9);
     const [pageCnt, setPageCnt] = useState(peopleDatas.length % contentPerPage > 0
         ? Math.floor(peopleDatas.length / contentPerPage) + 1
@@ -138,7 +81,7 @@ const InitialContents = () => {
         //検索文字列によるフィルタ
         const searchedDatas = peopleDatas
             .filter((people: peopleData) => {
-                if ((event.target.value !== '' && people.name.trim().toLowerCase().indexOf(event.target.value.trim().toLowerCase()) != -1)
+                if ((event.target.value !== '' && people.Name.trim().toLowerCase().indexOf(event.target.value.trim().toLowerCase()) != -1)
                     || event.target.value === '') {
                     return people
                 }
@@ -176,12 +119,6 @@ const InitialContents = () => {
         <>
 
             <Container maxWidth="lg">
-                {
-                    fetching == true ? <>loading</> :
-                        (data.AllPeople.map((ppl: peopleData) => (
-                            <li key={ppl.name}>{ppl.title}</li>
-                        )))
-                }
                 <SearchArea
                     searchTextChanged={searchTextChanged}
                 />
@@ -220,12 +157,27 @@ const InitialContents = () => {
                                             modalOpen={modalOpen} />
                                     </Grid>
                                 )
-                        ) : (
-                            <Grid item xs={12}>
-                                <Typography variant='h5' fontWeight='bold' sx={{ display: 'flex', justifyContent: 'center' }}>
-                                    No Result Found
-                                </Typography>
-                            </Grid>
+                        ) : (fetching === true ?
+                            (
+                                <Grid item xs={12}>
+                                    <LinearProgress />
+                                </Grid>
+                            ) : error !== undefined ?
+                                (
+                                    <Grid item xs={12}>
+                                        <Typography variant='h5' fontWeight='bold' sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            No Result Found
+                                        </Typography>
+                                    </Grid>
+                                ) : (
+                                    <Grid item xs={12}>
+                                        <Alert severity="error">
+                                            <AlertTitle>Error</AlertTitle>
+                                            Something went wrong!
+                                        </Alert>
+
+                                    </Grid>
+                                )
                         )
                     }
                 </Grid>

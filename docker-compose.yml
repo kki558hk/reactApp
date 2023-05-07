@@ -10,4 +10,7 @@ services:
     # command: sh -c "npm start"
     ports:
       - "3000:3000"
+    extra_hosts:
+      # 追加
+      - localhost:172.18.0.1 # 追加
     stdin_open: true

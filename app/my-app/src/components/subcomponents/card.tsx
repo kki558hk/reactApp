@@ -12,10 +12,10 @@ const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoPZdmBT
 
 
 type peopleData = {
-    id: number;
-    name: string;
-    title: string;
-    discript: string;
+    Id: number;
+    Name: string;
+    Title: string;
+
 }
 
 type ContentCardPropsType = {
@@ -42,10 +42,10 @@ const ContentCard = (props: ContentCardPropsType) => {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            {props.personData.name}
+                            {props.personData.Name}
                         </Typography>
                         <Typography variant="subtitle1">
-                            {props.personData.title}
+                            {props.personData.Title}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

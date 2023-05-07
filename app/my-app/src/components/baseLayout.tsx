@@ -4,7 +4,7 @@ import { ContentLayout } from './contentsComponent/contentIndex';
 import { Client, Provider, cacheExchange, fetchExchange } from 'urql';
 
 const client = new Client({
-    url: 'gqlserverurl',
+    url: 'http://localhost:8000/graphql',
     exchanges: [cacheExchange, fetchExchange],
 });
 
