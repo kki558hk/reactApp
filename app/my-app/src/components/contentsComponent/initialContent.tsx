@@ -155,17 +155,16 @@ const InitialContents = () => {
                             ) : error !== undefined ?
                                 (
                                     <Grid item xs={12}>
-                                        <Typography variant='h5' fontWeight='bold' sx={{ display: 'flex', justifyContent: 'center' }}>
-                                            No Result Found
-                                        </Typography>
-                                    </Grid>
-                                ) : (
-                                    <Grid item xs={12}>
                                         <Alert severity="error">
                                             <AlertTitle>Error</AlertTitle>
                                             Something went wrong!
                                         </Alert>
-
+                                    </Grid>
+                                ) : (
+                                    <Grid item xs={12}>
+                                        <Typography variant='h5' fontWeight='bold' sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            No Result Found
+                                        </Typography>
                                     </Grid>
                                 )
                         )

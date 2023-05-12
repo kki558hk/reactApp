@@ -3,10 +3,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import { Padding } from '@mui/icons-material';
-
-
-
+import QuoteTable from './quoteTable';
 
 
 const DetailedInfoModal = (props: DetailedInfoModalPropsType) => {
@@ -47,6 +44,11 @@ const DetailedInfoModal = (props: DetailedInfoModalPropsType) => {
                             <Typography variant='h6' sx={{ alignContent: 'center' }}>
                                 {props.personInfo.Name}
                             </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid sx={{ marginTop: '1%' }}>
+                        <Grid item xs={12}>
+                            <QuoteTable />
                         </Grid>
                     </Grid>
 
