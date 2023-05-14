@@ -15,9 +15,8 @@ import { useState, useEffect } from 'react';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import IconButton from '@mui/material/IconButton';
+import Grid from '@mui/material/Grid';
 
-
-let quotes: quoteData[];
 
 interface Column {
     id: 'Quote' | 'Share';
@@ -32,10 +31,8 @@ const columns: readonly Column[] = [
     { id: 'Share', label: 'Share', minWidth: 100 }
 ];
 
-const name = 'Warren Buffett';
-const QuoteTable = (props: any) => {
-
-
+const QuoteTable = (props: quoteTableType) => {
+    const [quoteDatas, setQuoteDatas] = useState<quoteData[]>([]);
     const QuoteQuery = gql`
     query ($name :String!) {
         QuotesByPerson(name : $name) {
@@ -43,6 +40,8 @@ const QuoteTable = (props: any) => {
         }
       }
   `;
+    let name;
+    name = props.name;
     const [result, reexecuteQuery] = useQuery({
         query: QuoteQuery,
         variables: { name },
@@ -50,15 +49,10 @@ const QuoteTable = (props: any) => {
 
     const { data, fetching, error } = result;
     useEffect(() => {
-        if (fetching === false && data !== undefined) {
-            quotes = data.QuotesByPerson;
-            console.log('quotes setted')
+        if (fetching === false && data.QuotesByPerson !== undefined) {
+            setQuoteDatas(data.QuotesByPerson);
         }
-
     }, [data])
-
-
-
 
 
     const [page, setPage] = React.useState(0);
@@ -73,68 +67,77 @@ const QuoteTable = (props: any) => {
         setPage(0);
     };
 
-
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {
-                            fetching === true ?
-                                (
-                                    <TableRow>
-                                        <CircularProgress />
-                                    </TableRow>
-                                ) : (
-                                    error !== undefined ? (
-                                        <TableRow>
-                                            <Alert severity="error">
-                                                <AlertTitle>Error</AlertTitle>
-                                                Something went wrong!
-                                            </Alert>
-                                        </TableRow>
-                                    ) : (quotes !== undefined && fetching === false && quotes.length > 0 ?
-                                        (
-                                            quotes.map((quote: quoteData) =>
+        <>
+            {
+                fetching === true ?
+                    (
+                        <Grid sx={{ display: 'flex' }}>
+                            <CircularProgress sx={{ justifyContent: 'center' }} />
+                        </Grid>
+                    ) : (
+                        error !== undefined ? (
+                            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                                <TableContainer sx={{ maxHeight: 440 }}>
+                                    <Table stickyHeader aria-label="sticky table">
+                                        <TableBody>
+                                            <TableRow>
+                                                <Alert severity="error">
+                                                    <AlertTitle>Error</AlertTitle>
+                                                    Something went wrong!
+                                                </Alert>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </Paper>
+                        ) : (fetching === false && quoteDatas.length > 0 ?
+                            (
+                                <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                                    <TableContainer sx={{ maxHeight: 440 }}>
+                                        <Table stickyHeader aria-label="sticky table">
+                                            <TableHead>
                                                 <TableRow>
-                                                    <TableCell>
-                                                        {quote.Content}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        <IconButton sx={{ marginLeft: '1%', marginRight: '5%' }}>
-                                                            <TwitterIcon />
-                                                        </IconButton>
-                                                        <IconButton>
-                                                            <InstagramIcon />
-                                                        </IconButton>
-                                                    </TableCell>
+                                                    {columns.map((column) => (
+                                                        <TableCell
+                                                            key={column.id}
+                                                            align={column.align}
+                                                            style={{ minWidth: column.minWidth }}
+                                                        >
+                                                            {column.label}
+                                                        </TableCell>
+                                                    ))}
                                                 </TableRow>
-                                            )
-                                        ) : <></>
-                                    )
-                                )
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            {/* <TablePagination/> */}
-        </Paper>
+                                            </TableHead>
+                                            <TableBody>
+                                                {
+                                                    quoteDatas.map((quote: quoteData) =>
+                                                        <TableRow>
+                                                            <TableCell>
+                                                                {quote.Content}
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <IconButton sx={{ marginLeft: '1%', marginRight: '5%' }}>
+                                                                    <TwitterIcon />
+                                                                </IconButton>
+                                                                <IconButton>
+                                                                    <InstagramIcon />
+                                                                </IconButton>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    )
+                                                }
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                </Paper>
+                            ) : <></>
+                        )
+                    )
+            }
+        </>
+        // {/* <TablePagination/> */ }
     );
-
-
 }
 
 export default QuoteTable;

@@ -48,7 +48,7 @@ const DetailedInfoModal = (props: DetailedInfoModalPropsType) => {
                     </Grid>
                     <Grid sx={{ marginTop: '1%' }}>
                         <Grid item xs={12}>
-                            <QuoteTable />
+                            <QuoteTable name={props.personInfo.Name} />
                         </Grid>
                     </Grid>
 
